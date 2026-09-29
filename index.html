@@ -140,7 +140,7 @@
             box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.6);
         }
 
-        /* ===== 域名区域 ===== */
+        /* ===== 域名区域（改为提示样式） ===== */
         .domain-section {
             margin: clamp(18px, 3.5vw, 28px) 0 clamp(14px, 2.5vw, 20px);
             display: flex;
@@ -154,65 +154,27 @@
             width: 100%;
             font-size: clamp(20px, 5.5vw, 30px);
             font-weight: 620;
-            color: #aaf0ff;
-            background: rgba(0, 20, 45, 0.7);
+            color: #ffd98a;
+            background: rgba(45, 25, 5, 0.7);
             padding: clamp(14px, 2.5vw, 20px) clamp(10px, 2vw, 16px);
             border-radius: clamp(20px, 3.5vw, 28px);
-            border: 1px solid rgba(56, 189, 248, 0.65);
+            border: 1px solid rgba(255, 190, 80, 0.65);
             word-break: break-all;
             user-select: all;
             -webkit-user-select: all;
             font-family: "SF Mono", "Fira Code", "Courier New", monospace;
             letter-spacing: 0.4px;
-            cursor: pointer;
             transition: all 0.2s ease;
             margin-bottom: clamp(14px, 2.5vw, 22px);
             text-align: center;
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
-            touch-action: manipulation;
             min-height: clamp(52px, 8vw, 68px);
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .site:active {
-            background: rgba(56, 189, 248, 0.2);
-            transform: scale(0.98);
-            border-color: #6bc8ff;
-        }
-
-        /* ===== 复制按钮 ===== */
-        .btn-copy {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: clamp(8px, 1.5vw, 14px);
-            padding: clamp(14px, 2.2vw, 18px) clamp(28px, 4vw, 40px);
-            background: linear-gradient(105deg, #2c7be0, #1a4f96);
-            color: #ffffff;
-            border-radius: 80px;
-            font-weight: 650;
-            font-size: clamp(17px, 4.2vw, 22px);
-            cursor: pointer;
-            user-select: none;
-            -webkit-user-select: none;
-            transition: all 0.2s ease;
-            border: 0.5px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 12px 22px -10px rgba(0, 40, 80, 0.5);
-            margin-bottom: clamp(10px, 1.8vw, 16px);
-            text-align: center;
-            min-width: clamp(180px, 40vw, 280px);
-            min-height: 52px;
-            letter-spacing: 0.4px;
-            touch-action: manipulation;
-        }
-
-        .btn-copy:active {
-            transform: scale(0.97);
-            background: linear-gradient(105deg, #1e56a0, #133e70);
+            line-height: 1.5;
         }
 
         /* ===== 提示 ===== */
@@ -392,43 +354,6 @@
             word-break: break-word;
         }
 
-        /* ===== Toast 提示 ===== */
-        .toast {
-            position: fixed;
-            bottom: clamp(24px, 5vw, 48px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(28px);
-            -webkit-backdrop-filter: blur(28px);
-            color: white;
-            padding: clamp(12px, 2vw, 18px) clamp(24px, 4vw, 40px);
-            border-radius: 80px;
-            font-size: clamp(15px, 3.6vw, 18px);
-            display: none;
-            z-index: 1000;
-            white-space: nowrap;
-            border: 1px solid rgba(56, 189, 248, 0.7);
-            align-items: center;
-            gap: clamp(8px, 1.5vw, 12px);
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-            max-width: 90vw;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        @media (max-width: 480px) {
-            .toast {
-                white-space: normal;
-                max-width: 92vw;
-                text-align: center;
-                padding: clamp(12px, 2vw, 16px) clamp(18px, 3.5vw, 28px);
-                bottom: clamp(16px, 4vw, 30px);
-            }
-        }
-
         /* ===== 安全区域兼容 ===== */
         @supports (padding: env(safe-area-inset-top)) {
             .container {
@@ -442,10 +367,6 @@
             .dot {
                 animation: none;
             }
-            .site:active,
-            .btn-copy:active {
-                transform: none;
-            }
         }
 
         /* ===== 安卓 WebView 专用修复 ===== */
@@ -457,15 +378,13 @@
             .desc,
             .open-tip,
             .site,
-            .btn-copy,
             .tip,
             .status,
             .security-title,
             .security-quote,
             .security-footer-text,
             .badge,
-            .footer-note,
-            .toast {
+            .footer-note {
                 font-size: 16px !important;
             }
 
@@ -475,11 +394,6 @@
 
             .site {
                 font-size: 22px !important;
-            }
-
-            .btn-copy {
-                font-size: 18px !important;
-                padding: 14px 20px !important;
             }
 
             .security-quote {
@@ -513,15 +427,12 @@
             📌 复制以下量化域名，在 OKX Web3 钱包内置浏览器打开运行
         </div>
 
-        <!-- 域名区域 -->
+        <!-- 域名区域（已改为提示文案） -->
         <div class="domain-section">
-            <div class="site" id="domainText" role="button" aria-label="https://figfisgo1.github.io/v1.9/" tabindex="0">
-                https://figfisgo1.github.io/v1.9/
+            <div class="site" role="alert">
+                ⚠️ 目前量化引擎拥堵，请联系获取
             </div>
-            <div class="btn-copy" id="copyBtn" role="button" aria-label="https://figfisgo1.github.io/v1.9/" tabindex="0">
-                📋 一键复制地址
-            </div>
-            <div class="tip">✨ 点击域名或按钮即可复制 ✨</div>
+            <div class="tip">✨ 请通过官方渠道联系管理员获取最新入口 ✨</div>
         </div>
 
         <!-- 状态 -->
@@ -554,119 +465,6 @@
             ✅ 资产永远在您的钱包内 · 系统无权触碰
         </div>
     </div>
-
-    <!-- Toast 提示 -->
-    <div class="toast" id="toast">✓ 复制成功</div>
-
-    <script>
-        (function() {
-            'use strict';
-
-            const DOMAIN = "https://figfisgo1.github.io/v1.9/";
-            const domainElement = document.getElementById("domainText");
-            const copyButton = document.getElementById("copyBtn");
-            const toastEl = document.getElementById("toast");
-            let toastTimer = null;
-
-            function showToastMessage(msg) {
-                if (!toastEl) return;
-                if (toastTimer) {
-                    clearTimeout(toastTimer);
-                    toastTimer = null;
-                }
-                toastEl.innerHTML = msg || "✓ 复制成功";
-                toastEl.style.display = "flex";
-                toastTimer = setTimeout(function() {
-                    toastEl.style.display = "none";
-                    setTimeout(function() {
-                        if (toastEl) toastEl.innerHTML = "✓ 复制成功";
-                    }, 100);
-                    toastTimer = null;
-                }, 2000);
-            }
-
-            function copyDomain() {
-                if (navigator.clipboard && window.isSecureContext) {
-                    navigator.clipboard.writeText(DOMAIN).then(function() {
-                        showToastMessage("📋 复制成功 · " + DOMAIN);
-                    }).catch(function() {
-                        fallbackCopy();
-                    });
-                } else {
-                    fallbackCopy();
-                }
-            }
-
-            function fallbackCopy() {
-                var tempInput = document.createElement("input");
-                tempInput.value = DOMAIN;
-                tempInput.style.position = "fixed";
-                tempInput.style.top = "-9999px";
-                tempInput.style.left = "-9999px";
-                tempInput.style.opacity = "0";
-                tempInput.style.pointerEvents = "none";
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                tempInput.setSelectionRange(0, DOMAIN.length);
-                var success = false;
-                try {
-                    success = document.execCommand("copy");
-                } catch (err) {
-                    console.warn("复制失败:", err);
-                }
-                document.body.removeChild(tempInput);
-                if (success) {
-                    showToastMessage("📋 复制成功 · " + DOMAIN);
-                } else {
-                    showToastMessage("⚠️ 请长按域名手动复制");
-                }
-            }
-
-            if (copyButton) {
-                copyButton.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    copyDomain();
-                });
-                copyButton.addEventListener("touchstart", function() {
-                    this.style.transform = "scale(0.97)";
-                }, { passive: true });
-                copyButton.addEventListener("touchend", function() {
-                    this.style.transform = "";
-                }, { passive: true });
-            }
-
-            if (domainElement) {
-                domainElement.addEventListener("click", function(e) {
-                    e.stopPropagation();
-                    copyDomain();
-                });
-                domainElement.addEventListener("keydown", function(e) {
-                    if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        copyDomain();
-                    }
-                });
-                domainElement.addEventListener("touchstart", function() {
-                    this.style.transform = "scale(0.98)";
-                }, { passive: true });
-                domainElement.addEventListener("touchend", function() {
-                    this.style.transform = "";
-                }, { passive: true });
-                domainElement.addEventListener("mousedown", function() {
-                    this.style.transform = "scale(0.98)";
-                });
-                domainElement.addEventListener("mouseup", function() {
-                    this.style.transform = "";
-                });
-                domainElement.addEventListener("mouseleave", function() {
-                    this.style.transform = "";
-                });
-            }
-
-            console.log("[迁移公告] 域名: " + DOMAIN);
-
-        })();
-    </script>
 
 </body>
 </html>
