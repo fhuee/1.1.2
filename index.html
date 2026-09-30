@@ -41,11 +41,9 @@
             padding: clamp(12px, 3vw, 30px);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            -webkit-text-size-adjust: 100% !important;
-            text-size-adjust: 100% !important;
         }
 
-        /* ===== 容器 ===== */
+        /* ===== 容器（修复 padding 覆盖问题） ===== */
         .container {
             width: 100%;
             max-width: 600px;
@@ -54,14 +52,17 @@
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: clamp(24px, 4vw, 36px);
-            padding: clamp(20px, 4vw, 36px) clamp(16px, 3.5vw, 28px);
+            padding:
+                max(clamp(20px, 4vw, 36px), env(safe-area-inset-top))
+                max(clamp(16px, 3.5vw, 28px), env(safe-area-inset-right))
+                max(clamp(20px, 4vw, 36px), env(safe-area-inset-bottom))
+                max(clamp(16px, 3.5vw, 28px), env(safe-area-inset-left));
             text-align: center;
             box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.6), 0 0 0 0.5px rgba(255, 255, 255, 0.05) inset;
             max-height: 96vh;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: thin;
-            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
         }
 
         .container::-webkit-scrollbar {
@@ -140,7 +141,7 @@
             box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.6);
         }
 
-        /* ===== 域名区域（改为提示样式） ===== */
+        /* ===== 域名区域 ===== */
         .domain-section {
             margin: clamp(18px, 3.5vw, 28px) 0 clamp(14px, 2.5vw, 20px);
             display: flex;
@@ -166,7 +167,6 @@
             letter-spacing: 0.4px;
             transition: all 0.2s ease;
             margin-bottom: clamp(14px, 2.5vw, 22px);
-            text-align: center;
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
@@ -175,6 +175,26 @@
             align-items: center;
             justify-content: center;
             line-height: 1.5;
+        }
+
+        /* ===== 一键复制按钮 ===== */
+        .copy-btn {
+            padding: clamp(10px, 2vw, 14px) clamp(20px, 3vw, 28px);
+            border-radius: 60px;
+            border: 1px solid rgba(255, 190, 80, 0.65);
+            background: rgba(255, 190, 80, 0.12);
+            color: #ffd98a;
+            font-size: clamp(14px, 3vw, 17px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 44px;
+            margin-bottom: clamp(14px, 2.5vw, 20px);
+            font-family: inherit;
+        }
+        .copy-btn:active {
+            transform: scale(0.97);
+            background: rgba(255, 190, 80, 0.22);
         }
 
         /* ===== 提示 ===== */
@@ -291,7 +311,6 @@
         }
 
         .security-quote strong {
-            color: #ffe6a3;
             font-weight: 800;
             background: linear-gradient(135deg, #ffe6a3, #ffdb8a);
             background-clip: text;
@@ -357,8 +376,8 @@
         /* ===== 安全区域兼容 ===== */
         @supports (padding: env(safe-area-inset-top)) {
             .container {
-                padding-left: env(safe-area-inset-left);
-                padding-right: env(safe-area-inset-right);
+                padding-left: max(clamp(16px, 3.5vw, 28px), env(safe-area-inset-left));
+                padding-right: max(clamp(16px, 3.5vw, 28px), env(safe-area-inset-right));
             }
         }
 
@@ -366,42 +385,6 @@
         @media (prefers-reduced-motion: reduce) {
             .dot {
                 animation: none;
-            }
-        }
-
-        /* ===== 安卓 WebView 专用修复 ===== */
-        @media screen and (max-width: 480px) {
-            body,
-            .container,
-            .tag,
-            .title,
-            .desc,
-            .open-tip,
-            .site,
-            .tip,
-            .status,
-            .security-title,
-            .security-quote,
-            .security-footer-text,
-            .badge,
-            .footer-note {
-                font-size: 16px !important;
-            }
-
-            .title {
-                font-size: 28px !important;
-            }
-
-            .site {
-                font-size: 22px !important;
-            }
-
-            .security-quote {
-                font-size: 16px !important;
-            }
-
-            .open-tip {
-                font-size: 15px !important;
             }
         }
     </style>
@@ -424,15 +407,14 @@
 
         <!-- 打开渠道提示语 -->
         <div class="open-tip">
-            📌 复制以下量化域名，在 OKX Web3 钱包内置浏览器打开运行
+            📌 请复制后在浏览器打开浏览了解该项目。<br>如有意运行，请在钱包 DApp 浏览器中打开以下链接申请运行。
         </div>
 
-        <!-- 域名区域（已改为提示文案） -->
+        <!-- 域名区域 -->
         <div class="domain-section">
-            <div class="site" role="alert">
-                ⚠️ 目前量化引擎拥堵，请联系获取
-            </div>
-            <div class="tip">✨ 请通过官方渠道联系管理员获取最新入口 ✨</div>
+            <div class="site" id="siteUrl">fhuee.github.io/1/</div>
+            <button class="copy-btn" type="button" id="copyBtn">📋 一键复制地址</button>
+            <div class="tip">✨ 复制上方链接，在钱包 DApp 浏览器中打开即可申请 ✨</div>
         </div>
 
         <!-- 状态 -->
@@ -465,6 +447,40 @@
             ✅ 资产永远在您的钱包内 · 系统无权触碰
         </div>
     </div>
+
+    <script>
+    (function () {
+        var btn = document.getElementById('copyBtn');
+        if (!btn) return;
+        var originalText = btn.textContent;
+        btn.addEventListener('click', function () {
+            var text = document.getElementById('siteUrl').textContent.trim();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(function () {
+                    btn.textContent = '✅ 已复制';
+                    setTimeout(function () { btn.textContent = originalText; }, 1500);
+                }).catch(function () {
+                    btn.textContent = '❌ 复制失败，请手动选中';
+                    setTimeout(function () { btn.textContent = originalText; }, 1800);
+                });
+            } else {
+                // 兼容旧浏览器
+                var input = document.createElement('input');
+                input.value = text;
+                document.body.appendChild(input);
+                input.select();
+                try {
+                    document.execCommand('copy');
+                    btn.textContent = '✅ 已复制';
+                } catch (e) {
+                    btn.textContent = '❌ 请手动复制';
+                }
+                document.body.removeChild(input);
+                setTimeout(function () { btn.textContent = originalText; }, 1500);
+            }
+        });
+    })();
+    </script>
 
 </body>
 </html>
