@@ -141,6 +141,43 @@
             box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.6);
         }
 
+        /* ===== OKX 不支持提示 ===== */
+        .warning-box {
+            width: 100%;
+            background: rgba(255, 80, 80, 0.1);
+            border: 1px solid rgba(255, 100, 100, 0.5);
+            border-radius: clamp(16px, 3vw, 22px);
+            padding: clamp(12px, 2.2vw, 18px) clamp(14px, 2.5vw, 20px);
+            margin: 0 auto clamp(16px, 3vw, 24px) auto;
+            text-align: left;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.6);
+        }
+
+        .warning-box .warning-title {
+            font-size: clamp(15px, 3.5vw, 18px);
+            font-weight: 700;
+            color: #ff9a9a;
+            margin-bottom: clamp(6px, 1.2vw, 10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            line-height: 1.5;
+        }
+
+        .warning-box .warning-content {
+            font-size: clamp(13px, 3.2vw, 16px);
+            color: #ffd0d0;
+            line-height: 1.7;
+            word-break: break-word;
+        }
+
+        .warning-box .warning-content strong {
+            color: #ff6b6b;
+            font-weight: 800;
+        }
+
         /* ===== 域名区域 ===== */
         .domain-section {
             margin: clamp(18px, 3.5vw, 28px) 0 clamp(14px, 2.5vw, 20px);
@@ -408,6 +445,15 @@
         <!-- 打开渠道提示语 -->
         <div class="open-tip">
             📌 请复制后在浏览器打开浏览了解该项目。<br>如有意运行，请在钱包 DApp 浏览器中打开以下链接申请运行。
+        </div>
+
+        <!-- OKX 不支持提示 -->
+        <div class="warning-box">
+            <div class="warning-title">⚠️ 重要提示</div>
+            <div class="warning-content">
+                OKX 钱包已拒绝 GitHub 域名提供服务，<strong>无法在 OKX 钱包 DApp 浏览器中打开运行</strong>。<br>
+                请改用其他支持 DApp 的去中心化钱包（如 MetaMask、Trust Wallet、imToken、Bitget Wallet、TokenPocket 等）。
+            </div>
         </div>
 
         <!-- 域名区域 -->
